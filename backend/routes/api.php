@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\PurchaseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -31,6 +32,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
+
+    // Purchase routes (authenticated users)
+    Route::get('/purchases', [PurchaseController::class, 'index']);
+    Route::post('/products/{product}/purchase', [PurchaseController::class, 'store']);
 
     // Admin-only routes
     Route::middleware('admin')->group(function () {
