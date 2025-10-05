@@ -43,4 +43,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    /**
+     * Get the purchases for the user.
+     */
+    public function purchases()
+    {
+        return $this->hasMany(Purchase::class);
+    }
 }
